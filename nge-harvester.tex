@@ -41,7 +41,27 @@
           }
 
 \abstract{%
-  Insert your english abstract here.
+  PanDA executes millions of ATLAS jobs a month on Grid systems with more than
+  300k cores. Currently, PanDA is compatible only with few HPC resources due to
+  different edge services and operational policies, does not implement the pilot
+  paradigm on HPC, and does not dynamically optimize resource allocation among
+  queues. We integrated the PanDA Harvester service and the RADICAL-Pilot (RP)
+  system to overcome these disadvantages and enable the execution of ATLAS,
+  Molecular Dynamics and other workflows on HPC resources.
+  
+  Harvester is a commonality layer which brings coherence to diverse HPC
+  systems, providing integration with PanDA workflows at job and event level. RP
+  is a pilot system capable of executing short/long-running single/many-cores
+  tasks on diverse HPC machines, supporting CPUs, GPUs, and multiple MPI
+  implementations.
+  
+  We integrated Harvester and RP on Titan at ORNL, prototyping a Next Generation
+  Executor (NGE) to expose RP capabilities and manage the execution of PanDA
+  workflows. RP acquires Titan resources via queues and backfill capabilities
+  and publishes the available resources to NGE. Harvester requests available
+  resources and submits tasks for execution to NGE. NGE uses RP to execute those
+  tasks, managing input and output staging, and holding the states of resources
+  and tasks on a dedicated database.
 }
 %
 \maketitle
@@ -66,7 +86,7 @@ Harvester [Harvester] is a resource-facing service developed for ATLAS experimen
 
 Figure 1. Harvester architecture
 
-Figure 1 shows a schematic view of the Harvester architecture. Harvester is a stateless service with a local master database and a central slave database. The local database is used for real-time bookkeeping close to resources, and the central database is periodically synchronized with the local database to provide the resource information to the PanDA server. The PanDA server uses the information together with global overview of workload distribution in order to orchestrate behaviour of Harvester instances. Therefore, communication between harvester and the PanDA server is bidirectional. Harvester fetches job descriptions that have to be executed from PanDA Server using communicator component, same component is used to report back the status of these jobs. Harvester accesses resources through different plugins (Figure 2) which have been developed by resource experts. When Harvester instances run on edge nodes of HPC centers they access compute nodes through local HPC batch systems using HPC submission plugins. Status of the batches is tracked using monitor plugin. Input and output data are transferred with various stager and preparator plugins which implement Rucio [RUCIO], Globus Online [Globus_online]  and other data transfer clients. All of the communication between the components is done via local database.
+Figure 1 shows a schematic view of the Harvester architecture. Harvester is a stateless service with a local master database and a central slave database. The local database is used for real-time bookkeeping close to resources, and the central database is periodically synchronized with the local database to provide the resource information to the PanDA server. The PanDA server uses the information together with global overview of workload distribution in order to orchestrate behaviour of Harvester instances. Therefore, communication between harvester and the PanDA server is bidirectional. Harvester fetches job descriptions that have to be executed from PanDA Server using communicator component, same component is used to report back the status of these jobs. Harvester accesses resources through different plugins (Figure 2) which have been developed by resource experts. When Harvester instances run on edge nodes of HPC centers they access compute nodes through local HPC batch systems using HPC submission plugins. Status of the batches is tracked using monitor plugin. Input and output data are transferred with various stager and preparator plugins which implement Rucio \cite{RUCIO}, Globus Online \cite{Globus_online}  and other data transfer clients. All of the communication between the components is done via local database.
 
 
 
@@ -84,7 +104,7 @@ RADICAL-Pilot (RP) is a pilot system~\cite{turillirp} which enables task-level c
 	Architecturally, RP is designed following a so called ‘building blocks’ design approach~\cite{bb}. Consistently, RP is self-sufficient, interoperable, extensible and partially composable. Self-sufficient because RP independently implements the necessary and sufficient set of functionalities for describing and managing pilot and task entities; interoperable in terms of type of workload, resource, and execution paradigm; and extensible as new properties can be added to the pilot, task and resource descriptions, and more functionalities can be implemented for this entities. Currently, composability is partially designed and implemented: while the pilot-API can be used by both users and other systems to describe one or more task-based workloads for execution, RADICAL-Pilot requires RADICAL-SAGA to interface to HPC resources. A prototype interface to cloud resources based on LibCloud is available and a general-purpose resource connector component is under development.
 	
 	
-	Figure #. RADICAL-Pilot (RP) architecture and execution model. Architecture: interfaces (white), modules (purple), components (yellow), pilot entity (green), task entity called compute unit (red). Execution model: Pilot and units are described via the Pilot API (1); pilots are submitted to the indicated resource(s) (2); each pilot bootstraps an agent (3); compute units are scheduled onto available agent(s) (4) and executed (5).
+	Figure \number. RADICAL-Pilot (RP) architecture and execution model. Architecture: interfaces (white), modules (purple), components (yellow), pilot entity (green), task entity called compute unit (red). Execution model: Pilot and units are described via the Pilot API (1); pilots are submitted to the indicated resource(s) (2); each pilot bootstraps an agent (3); compute units are scheduled onto available agent(s) (4) and executed (5).
 	
 	Figure~\ref{fig:rp-arch} shows RP architecture and execution model. RP assumes a multi-task application written in Python, using the Pilot API. This API let users to describe tasks---called compute units (CU)---and pilots (Figure~\ref{fig:rp-arch}.1). Each task description has a set of properties, including the name of the executable launched by RP, the type and amount of cores this executable will need, whether it requires MPI, input files and so on. Pilot descriptions also have a set of properties, including the endpoint where the resource request should be submitted, the type and amount of resources to acquire, and the walltime of these resources. The RP API includes classes to create both pilot and unit managers to which pilot and unit descriptions are assigned for execution. Once managed, pilots are submitted to the indicated endpoint (Figure~\ref{fig:rp-arch}.2), and once scheduled pilot bootstrap an agent (Figure~\ref{fig:rp-arch}.3). Unit manager(s) schedule compute units onto available agent(s) (Figure~\ref{fig:rp-arch}.4) and each agent uses a resource-specific executor to run the units (Figure~\ref{fig:rp-arch}.5). 
 	
@@ -101,7 +121,7 @@ RADICAL-Pilot (RP) is a pilot system~\cite{turillirp} which enables task-level c
 
 \section{Integrating Harvester and NGE}
 
-Figure #. Integration between Harvester and NGE deployed at OLCF to manage the execution of Particle Physics and Molecular Dynamics workloads. Harvester, NGE and RP, and MongoDB are deployed on containers provided and managed via OpenShift.
+Figure \number. Integration between Harvester and NGE deployed at OLCF to manage the execution of Particle Physics and Molecular Dynamics workloads. Harvester, NGE and RP, and MongoDB are deployed on containers provided and managed via OpenShift.
 
 We deployed Harvester, NGE and RP, and the MongoDB instance needed by RP on three separate containers provided by OLCF via their OpenShift service. The container used for NGE and RP can directly submit jobs to the PBS batch system of Titan, while the MongoDB instance can be reached by both Titan and the NGE and RP container. This enable submission of pilot jobs to Titan and scheduling of tasks on the resources of that pilot once scheduled and bootstrapped.
 
