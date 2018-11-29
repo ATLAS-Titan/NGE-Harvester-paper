@@ -2,6 +2,8 @@
 \usepackage[varg]{txfonts}
 \usepackage{natbib}
 
+\usepackage{xcolor}
+
 \begin{document}
 
 \title{PanDA and RADICAL-Pilot Integration: Enabling the Pilot Paradigm on HPC Resources}
@@ -111,7 +113,7 @@ machines.
 % ---------------------------------------------------------------------------
 \section{Harvester}
 
-Harvester [Harvester] is a resource-facing service developed for ATLAS
+\textcolor{red}{Harvester [Harvester]} is a resource-facing service developed for ATLAS
 experiment at CERN since 2016 with a wide collaboration of experts.  It is
 stateless with a modular design to work with different resource types and
 workloads. The main objectives of Harvester are as follows: first, it should
@@ -282,7 +284,7 @@ We deployed Harvester, NGE and RP, and the MongoDB instance needed by RP on
 three separate containers provided by OLCF via their OpenShift service. The
 container used for NGE and RP can directly submit jobs to the PBS batch
 system of Titan, while the MongoDB instance can be reached by both Titan and
-the NGE and RP container. This enable submission of pilot jobs to Titan and
+the NGE and RP container. This enables submission of pilot jobs to Titan and
 scheduling of tasks on the resources of that pilot once scheduled and
 bootstrapped.
 
@@ -293,7 +295,7 @@ installed on different nodes (data transfer node for Harvester and login node
 for NGE), the communication is done via a secure tunnel between these nodes.
 A special module for job submissions to NGE and job monitoring has been
 developed. The functionality of these modules have been tested with dummy
-jobs as well as with samples of ATLAS and Molecular Dynamics [MD]. Another
+jobs as well as with samples of ATLAS and \textcolor{red}{Molecular Dynamics [MD]}. Another
 NGE instance that will be running in a container in OpenShift at OLCF is
 under active deployment.
 
@@ -340,7 +342,7 @@ NGE can be configured to use RP to submit jobs to Titan in two modes:
 standard or backfill. Standard mode supports submission of jobs to one or
 more of the five PBS queues available on Titan. In this mode, job submissions
 are exactly the same as any other job submitted to Titan for execution by any
-other user. In backfill mode, RP uses the … command of the Maui scheduler to
+other user. \textcolor{red}{In backfill mode, RP uses the … command of the Maui scheduler} to
 poll the current node and walltime availability, creates a pilot description
 requesting that availability and submits an equivalent job to the required
 queue. In this way, RP increases the chances for that job to be immediately
