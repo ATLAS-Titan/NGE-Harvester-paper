@@ -295,7 +295,7 @@ installed on different nodes (data transfer node for Harvester and login node
 for NGE), the communication is done via a secure tunnel between these nodes.
 A special module for job submissions to NGE and job monitoring has been
 developed. The functionality of these modules have been tested with dummy
-jobs as well as with samples of ATLAS and \textcolor{red}{Molecular Dynamics [MD]}. Another
+jobs as well as with samples of ATLAS and Molecular Dynamics \cite{Brooks2009CHARMMTB}. Another
 NGE instance that will be running in a container in OpenShift at OLCF is
 under active deployment.
 
@@ -342,7 +342,7 @@ NGE can be configured to use RP to submit jobs to Titan in two modes:
 standard or backfill. Standard mode supports submission of jobs to one or
 more of the five PBS queues available on Titan. In this mode, job submissions
 are exactly the same as any other job submitted to Titan for execution by any
-other user. \textcolor{red}{In backfill mode, RP uses the … command of the Maui scheduler} to
+other user. \textcolor{red}{In backfill mode, RP uses the ''showbf'' command of the Maui scheduler} to
 poll the current node and walltime availability, creates a pilot description
 requesting that availability and submits an equivalent job to the required
 queue. In this way, RP increases the chances for that job to be immediately
