@@ -2,6 +2,10 @@
 \usepackage[varg]{txfonts}
 \usepackage{natbib}
 
+\usepackage{xcolor}
+
+\usepackage[justification=centering]{caption}
+
 \begin{document}
 
 \title{PanDA and RADICAL-Pilot Integration: Enabling the Pilot Paradigm on HPC Resources}
@@ -111,7 +115,7 @@ machines.
 % ---------------------------------------------------------------------------
 \section{Harvester}
 
-Harvester [Harvester] is a resource-facing service developed for ATLAS
+Harvester \cite{Harvester} is a resource-facing service developed for ATLAS
 experiment at CERN since 2016 with a wide collaboration of experts.  It is
 stateless with a modular design to work with different resource types and
 workloads. The main objectives of Harvester are as follows: first, it should
@@ -122,9 +126,16 @@ allocation among various resource types to remove batch-level static
 partitioning. Finally, it should integrate the PanDA system and resources
 more tightly for new advanced workloads.
 
-Figure 1. Harvester architecture
+\begin{figure}
+	\centering
+	\includegraphics[width=0.49\textwidth]{figures/panda-harvester-overview.pdf}
+	\caption{Harvester architecture}
+	\label{fig:harvester-architecture}
+\end{figure}
 
-Figure 1 shows a schematic view of the Harvester architecture. Harvester is a
+%Figure 1. Harvester architecture
+
+Figure \ref{fig:harvester-architecture} shows a schematic view of the Harvester architecture. Harvester is a
 stateless service with a local master database and a central slave database.
 The local database is used for real-time bookkeeping close to resources, and
 the central database is periodically synchronized with the local database to
@@ -135,7 +146,7 @@ communication between harvester and the PanDA server is bidirectional.
 Harvester fetches job descriptions that have to be executed from PanDA Server
 using communicator component, same component is used to report back the
 status of these jobs. Harvester accesses resources through different plugins
-(Figure 2) which have been developed by resource experts. When Harvester
+(Figure \ref{fig:harvester-modules}) which have been developed by resource experts. When Harvester
 instances run on edge nodes of HPC centers they access compute nodes through
 local HPC batch systems using HPC submission plugins. Status of the batches
 is tracked using monitor plugin. Input and output data are transferred with
@@ -144,8 +155,14 @@ Rucio~\cite{garonne2014rucio}, Globus Online~\cite{foster2011globus}  and
 other data transfer clients. All of the communication between the components
 is done via local database.
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.49\textwidth]{figures/panda-harvester-modules.pdf}
+	\caption{Modules used for PanDA-NGE interaction}
+	\label{fig:harvester-modules}
+\end{figure}
 
-Figure. Modules used for PanDA-NGE interaction
+% Figure. Modules used for PanDA-NGE interaction
 
 In context of BigPanDA project several instances of Harvester have been
 deployed on front nodes of BNL Institutional Cluster, NERSC (Cori), Titan and
@@ -282,7 +299,7 @@ We deployed Harvester, NGE and RP, and the MongoDB instance needed by RP on
 three separate containers provided by OLCF via their OpenShift service. The
 container used for NGE and RP can directly submit jobs to the PBS batch
 system of Titan, while the MongoDB instance can be reached by both Titan and
-the NGE and RP container. This enable submission of pilot jobs to Titan and
+the NGE and RP container. This enables submission of pilot jobs to Titan and
 scheduling of tasks on the resources of that pilot once scheduled and
 bootstrapped.
 
@@ -293,7 +310,7 @@ installed on different nodes (data transfer node for Harvester and login node
 for NGE), the communication is done via a secure tunnel between these nodes.
 A special module for job submissions to NGE and job monitoring has been
 developed. The functionality of these modules have been tested with dummy
-jobs as well as with samples of ATLAS and Molecular Dynamics [MD]. Another
+jobs as well as with samples of ATLAS and Molecular Dynamics \cite{Brooks2009CHARMMTB}. Another
 NGE instance that will be running in a container in OpenShift at OLCF is
 under active deployment.
 
@@ -340,7 +357,7 @@ NGE can be configured to use RP to submit jobs to Titan in two modes:
 standard or backfill. Standard mode supports submission of jobs to one or
 more of the five PBS queues available on Titan. In this mode, job submissions
 are exactly the same as any other job submitted to Titan for execution by any
-other user. In backfill mode, RP uses the … command of the Maui scheduler to
+other user. \textcolor{red}{In backfill mode, RP uses the ''showbf'' command of the Maui scheduler} to
 poll the current node and walltime availability, creates a pilot description
 requesting that availability and submits an equivalent job to the required
 queue. In this way, RP increases the chances for that job to be immediately
