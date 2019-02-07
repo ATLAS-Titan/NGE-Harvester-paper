@@ -6,6 +6,8 @@
 
 \usepackage[justification=centering]{caption}
 
+\def\correspondingauthor{\footnote{Corresponding author: \url{matteo.turilli@rutgers.edu}}}
+
 \begin{document}
 
 \title{PanDA and RADICAL-Pilot Integration: Enabling the Pilot Paradigm on HPC Resources}
@@ -13,7 +15,7 @@
 \author{
   \firstname{Andre} \lastname{Merzky}\inst{2} \and
   \firstname{Pavlo} \lastname{Svirin}\inst{1} \and
-  \firstname{Matteo} \lastname{Turilli}\inst{2}
+  \firstname{Matteo} \lastname{Turilli}\inst{2,}\correspondingauthor
 }
 
 \institute{Rutgers University, New Brunswick, NJ, USA \and
@@ -21,7 +23,7 @@
 }
 
 \abstract{PanDA executes millions of ATLAS jobs a month on Grid systems with
-more than 300,000 cores. Currently, PanDA is compatible only with few HPC
+more than 300,000 cores. Currently, PanDA is compatible only with few high-performance computing (HPC)
 resources due to different edge services and operational policies; does not
 implement the pilot paradigm on HPC; and does not dynamically optimize
 resource allocation among queues. We integrated the PanDA Harvester service
@@ -62,7 +64,7 @@ Computing Facility (OLCF) at the Oak Ridge National Laboratory (ORNL).
 
 Ref.~\cite{Doleynik2017high} describes in detail how PanDA has been deployed
 on Titan. Importantly, it shows that while PanDA implements the pilot
-abstraction to execute tasks on grid resources, on HPC facilities PanDA
+abstraction to execute tasks on grid resources, on high-performance computing (HPC) facilities PanDA
 submits jobs directly to the batch system of the machine. The size and
 duration of these jobs depend on resource availability and workload
 requirements. PanDA polls resource availability from Titan every ten minutes
@@ -310,7 +312,7 @@ environment, Harvester and NGE instances have been installed on different
 containers, enabling communication via a secure tunnel. A special module for
 job submissions to NGE and job monitoring has been developed for Harvester.
 The functionality of these modules have been tested with dummy jobs as well
-as with samples of ATLAS and Molecular Dynamics~\cite{Brooks2009CHARMMTB}
+as with samples of ATLAS and Molecular Dynamics~\cite{3b6dad414e794d36954333f8f177f47c}
 workloads.
 
 Figure~\ref{fig:integration} shows details of the coordination protocol
