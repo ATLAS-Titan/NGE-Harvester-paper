@@ -1,0 +1,10 @@
+This contribution is unclear in several areas, largely due to lack of introduction of new concepts. Recommend significant changes, particularly the following:
+
+- Please extend the abstract to summarise what the paper will present. It is not clear what the objective of the paper is.
+- Many concepts are used without introduction or reference. Please clarify throughout the submission and include references with concepts or acronyms wherever possible, e.g. PanDA, NGE, Harvester, RADICAL-pilot, RADICAL-SAGA.
+- Figure 1, please replace with a higher definition image
+- For clarity, please split the Conclusion into a Conclusion and Next Steps
+
+
+
+Section 3: Executing tasks from different users or organisations in the same pilot sounds like a huge security hole, one job can tamper with data from another experiment or access credentials from another job. Can you address this concern in the text?

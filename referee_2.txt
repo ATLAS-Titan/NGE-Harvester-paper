@@ -1,0 +1,40 @@
+Referee 2: 
+Author list: 
+Please give full addresses of the institutes and put them in the same order as the authors
+Give a corresponding email address (????)
+
+Section 1: 
+Give a reference to PanDA 
+"in case, submits a job" -> "in case of available resources, submits a job"
+Put the reference to Harvester here where it is first mentioned
+Same for RADICAL-Pilot, put the reference here 
+"directly scheduling tasks" -> "directly schedule tasks" 
+"coherence to ATLAS" -> "coherence to the ATLAS" 
+"This capabilities" -> "These capabilities" 
+
+Section 2:
+"one or more edge node" -> "one or more edge nodes"
+"of BigPanDA project" -> "of the BigPanDA project"
+
+Section 3:
+"Jobs waits" -> "Jobs wait"
+Executing tasks from different users or organisations in the same pilot sounds like a huge security hole, one job can tamper with data from another experiment or access credentials from another job. Can you address this concern in the text?
+"each tasks" -> "each task"
+Provide references to RADICAL-SAGA and LibCloud
+"once scheduled pilot bootstrap" -> "once scheduled, pilots bootstrap"
+"managers is instantiated" -> "managers are instantiated"
+"specific specific requirements" -> remove duplicate "specific" 
+"between he two systems" -> "between the two systems" 
+
+Section 4:
+"Harvester can pull" -> "Harvester can poll" 
+
+Section 5: 
+"well-define API" -> "well-defined API"
+"Harveser" -> "Harvester"
+AthenaMP -> explain what this is and/or provide a reference 
+
+References:
+Ref 3: Use the harvester paper from these proceedings
+Ref 6 and 9 are missing the journal name 
+Ref 10: fix the author "O.S. Team" 

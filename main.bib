@@ -21,6 +21,8 @@
   author={Andre Merzky and Matteo Turilli and Manuel Maldonado  and Mark Santcroos and Shantenu Jha},
   title={Using Pilot Systems to Execute Many Task Workloads on Supercomputers},
   journal={JSSPP 2018 (in conjunction with IPDPS'18)},
+  booktitle={JSSPP 2018 (in conjunction with IPDPS'18)}, 
+  pages={61--82}, 
   year=2018
 }
 
@@ -71,11 +73,98 @@
 @electronic{openshift,
   title = {{OLCF} Testing New Platform for Scientific Workflows},
   author = {Jonathan Hines},
-  url = {https://www.olcf.ornl.gov/2017/06/05/olcf-testing-new-platform-for-scientific-workflows/}
+  url = {https://www.olcf.ornl.gov/2017/06/05/olcf-testing-new-platform\-for-scientific-workflows/}
 }
 
 @electronic{showbf,
-  title = {Choosing an Interactive Job’s nodes Value},
-  author = {OLCF Support Team},
+  title = {Running jobs on Titan},
   url = {https://www.olcf.ornl.gov/for-users/system-user-guides/titan/running-jobs/}
+}
+
+@article{Crooks_2012,
+	doi = {10.1088/1742-6596/396/3/032115},
+	url = {https://doi.org/10.1088%2F1742-6596%2F396%2F3%2F032115},
+	year = 2012,
+	month = {dec},
+	publisher = {{IOP} Publishing},
+	volume = {396},
+	number = {3},
+	pages = {032115},
+	author = {D Crooks and P Calafiura and R Harrington and M Jha and T Maeno and S Purdie and H Severini and S Skipsey and V Tsulaia and R Walker and A Washbrook},
+	title = {Multi-core job submission and grid resource scheduling for {ATLAS} {AthenaMP}},
+	journal = {Journal of Physics: Conference Series},
+	annote = {AthenaMP is the multi-core implementation of the ATLAS software framework and allows the efficient sharing of memory pages between multiple threads of execution. This has now been validated for production and delivers a significant reduction on the overall application memory footprint with negligible CPU overhead. Before AthenaMP can be routinely run on the LHC Computing Grid it must be determined how the computing resources available to ATLAS can best exploit the notable improvements delivered by switching to this multi-process model. A study into the effectiveness and scalability of AthenaMP in a production environment will be presented. Best practices for configuring the main LRMS implementations currently used by grid sites will be identified in the context of multi-core scheduling optimisation.}
+}
+
+@article{PanDA,
+	author = {Maeno, T},
+	year = {2008},
+	month = {07},
+	pages = {062036},
+	title = {PanDA: Distributed production and distributed analysis system for ATLAS},
+	volume = {119},
+	journal = {Journal of Physics: Conference Series},
+	doi = {10.1088/1742-6596/119/6/062036}
+}
+
+@article{Megino_2017,
+	doi = {10.1088/1742-6596/898/5/052002},
+	url = {https://doi.org/10.1088%2F1742-6596%2F898%2F5%2F052002},
+	year = 2017,
+	month = {oct},
+	publisher = {{IOP} Publishing},
+	volume = {898},
+	pages = {052002},
+	author = {F Megino and K De and A Klimentov and T Maeno and P Nilsson and D Oleynik and S Padolski and S Panitkin and T Wenaus},
+	title = {{PanDA} for {ATLAS} distributed computing in the next decade},
+	journal = {Journal of Physics: Conference Series},
+	annote = {The Production and Distributed Analysis (PanDA) system has been developed to meet ATLAS production and analysis requirements for a data-driven workload management system capable of operating at the Large Hadron Collider (LHC) data processing scale. Heterogeneous resources used by the ATLAS experiment are distributed worldwide at hundreds of sites, thousands of physicists analyse the data remotely, the volume of processed data is beyond the exabyte scale, dozens of scientific applications are supported, while data processing requires more than a few billion hours of computing usage per year. PanDA performed very well over the last decade including the LHC Run 1 data taking period. However, it was decided to upgrade the whole system concurrently with the LHC’s first long shutdown in order to cope with rapidly changing computing infrastructure. After two years of reengineering efforts, PanDA has embedded capabilities for fully dynamic and flexible workload management. The static batch job paradigm was discarded in favor of a more automated and scalable model. Workloads are dynamically tailored for optimal usage of resources, with the brokerage taking network traffic and forecasts into account. Computing resources are partitioned based on dynamic knowledge of their status and characteristics. The pilot has been re-factored around a plugin structure for easier development and deployment. Bookkeeping is handled with both coarse and fine granularities for efficient utilization of pledged or opportunistic resources. An in-house security mechanism authenticates the pilot and data management services in off-grid environments such as volunteer computing and private local clusters. The PanDA monitor has been extensively optimized for performance and extended with analytics to provide aggregated summaries of the system as well as drill-down to operational details. There are as well many other challenges planned or recently implemented, and adoption by non-LHC experiments such as bioinformatics groups successfully running Paleomix (microbial genome and metagenomes) payload on supercomputers. In this paper we will focus on the new and planned features that are most important to the next decade of distributed computing workload management.}
+}
+	
+	
+@article{MERZKY20153,
+	title = "SAGA: A standardized access layer to heterogeneous Distributed Computing Infrastructure",
+	journal = "SoftwareX",
+	volume = "1-2",
+	pages = "3 - 8",
+	year = "2015",
+	issn = "2352-7110",
+	doi = "https://doi.org/10.1016/j.softx.2015.03.001",
+	url = "http://www.sciencedirect.com/science/article/pii/S2352711015000023",
+	author = "Andre Merzky and Ole Weidner and Shantenu Jha",
+	abstract = "Distributed Computing Infrastructure is characterized by interfaces that are heterogeneous—syntactically and semantically. SAGA represents the most comprehensive community effort to date to address the heterogeneity by defining a simple, uniform access layer. In this paper, we describe the basic concepts underpinning its design and development. We also discuss RADICAL-SAGA which is the most widely used implementation of SAGA."
+}
+
+
+@article{Merzky2018DesignAP,
+	title={Design and Performance Characterization of RADICAL-Pilot on Titan.},
+	author={Andr{\'e} Merzky and Matteo Turilli and Manuel Maldonado and Shantenu Jha},
+	journal={CoRR},
+	year={2018},
+	volume={abs/1801.01843}
+}
+
+
+@electronic{LibCloud,
+	title = {LibCloud},
+	url = {https://libcloud.readthedocs.io/en/latest/compute/drivers/ec2.html}
+}
+
+
+@article{3b6dad414e794d36954333f8f177f47c,
+	title = "CHARMM: The biomolecular simulation program",
+	abstract = "CHARMM (Chemistry at HARvard Molecular Mechanics) is a highly versatile and widely used molecular simulation program. It has been developed over the last three decades with a primary focus on molecules of biological interest, including proteins, peptides, lipids, nucleic acids, carbohydrates, and small molecule ligands, as they occur in solution, crystals, and membrane environments. For the study of such systems, the program, provides a large suite of computational tools that include numerous conformational and path sampling methods, free energy estimators, molecular minimization, dynamics, and analysis techniques, and model-building capabilities. The CHARMM! program is applicable to problems involving a much broader class of many-particle systems. Calculations with CHARMM can be performed, using a number of different energy functions and models, from mixed quantum mechanical-molecular mechanical force fields, to all-atom classical potential energy functions with explicit solvent and various boundary conditions, to implicit solvent and membrane models. The program, has been ported to numerous platforms in both serial and parallel architectures. This article provides an overview of the program, as it exists today with, an emphasis on developments since the publication of the original CHARMM article in 1983.",
+	keywords = "Biomolecular simulation, Biophysical computation, CHARMM program, Energy function, Molecular dynamics, Molecular mechanics, Molecular modeling",
+	author = "Brooks, {B. R.} and Brooks, {C. L.} and Mackerell, {A. D.} and others",
+	year = "2009",
+	month = "7",
+	day = "30",
+	doi = "10.1002/jcc.21287",
+	language = "English (US)",
+	volume = "30",
+	pages = "1545--1614",
+	journal = "Journal of Computational Chemistry",
+	issn = "0192-8651",
+	publisher = "John Wiley and Sons Inc.",
+	number = "10",
 }
