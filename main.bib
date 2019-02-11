@@ -46,7 +46,7 @@
 }
 
 @inproceedings{foster2011globus,
-  title={Globus Online: Accelerating and democratizing science through cloud-based services},
+  title={{Globus Online}: Accelerating and democratizing science through cloud-based services},
   author={Foster, Ian},
   journal={IEEE Internet Computing},
   volume={15},
@@ -57,7 +57,7 @@
 }
 
 @inproceedings{Brooks2009CHARMMTB,
-	title={CHARMM: The biomolecular simulation program},
+	title={{CHARMM}: The biomolecular simulation program},
 	author={Bernard R. Brooks and Charles L. Brooks and Alexander D. MacKerell and Lennart Nilsson and Robert J. Petrella and Beno{\^i}t Roux and Y. Won and G. Archontis and Christian Bartels and Stefan Boresch and Amedeo Caflisch and Leo S. D. Caves and Qiang Cui and Aaron R. Dinner and Michael Feig and S. Fischer and Jiali Gao and Milan Hodo{\vs}{\vc}ek and Wonpil Im and Krzysztof Kuczera and Themis Lazaridis and J. Ma and V. Ovchinnikov and Emanuele Paci and Richard W. Pastor and Carol Beth Post and J. Z. Pu and Michael Schaefer and Bruce Tidor and Richard M. Venable and H. Lee Woodcock and Xin Wu and W. Yang and Darrin M. York and Martin Karplus},
 	journal={Journal of computational chemistry},
 	year={2009},
@@ -93,7 +93,6 @@
 	author = {D Crooks and P Calafiura and R Harrington and M Jha and T Maeno and S Purdie and H Severini and S Skipsey and V Tsulaia and R Walker and A Washbrook},
 	title = {Multi-core job submission and grid resource scheduling for {ATLAS} {AthenaMP}},
 	journal = {Journal of Physics: Conference Series},
-	annote = {AthenaMP is the multi-core implementation of the ATLAS software framework and allows the efficient sharing of memory pages between multiple threads of execution. This has now been validated for production and delivers a significant reduction on the overall application memory footprint with negligible CPU overhead. Before AthenaMP can be routinely run on the LHC Computing Grid it must be determined how the computing resources available to ATLAS can best exploit the notable improvements delivered by switching to this multi-process model. A study into the effectiveness and scalability of AthenaMP in a production environment will be presented. Best practices for configuring the main LRMS implementations currently used by grid sites will be identified in the context of multi-core scheduling optimisation.}
 }
 
 @article{PanDA,
@@ -101,7 +100,7 @@
 	year = {2008},
 	month = {07},
 	pages = {062036},
-	title = {PanDA: Distributed production and distributed analysis system for ATLAS},
+	title = {{PanDA}: Distributed production and distributed analysis system for ATLAS},
 	volume = {119},
 	journal = {Journal of Physics: Conference Series},
 	doi = {10.1088/1742-6596/119/6/062036}
@@ -117,37 +116,66 @@
 	pages = {052002},
 	author = {F Megino and K De and A Klimentov and T Maeno and P Nilsson and D Oleynik and S Padolski and S Panitkin and T Wenaus},
 	title = {{PanDA} for {ATLAS} distributed computing in the next decade},
-	journal = {Journal of Physics: Conference Series},
-	annote = {The Production and Distributed Analysis (PanDA) system has been developed to meet ATLAS production and analysis requirements for a data-driven workload management system capable of operating at the Large Hadron Collider (LHC) data processing scale. Heterogeneous resources used by the ATLAS experiment are distributed worldwide at hundreds of sites, thousands of physicists analyse the data remotely, the volume of processed data is beyond the exabyte scale, dozens of scientific applications are supported, while data processing requires more than a few billion hours of computing usage per year. PanDA performed very well over the last decade including the LHC Run 1 data taking period. However, it was decided to upgrade the whole system concurrently with the LHC’s first long shutdown in order to cope with rapidly changing computing infrastructure. After two years of reengineering efforts, PanDA has embedded capabilities for fully dynamic and flexible workload management. The static batch job paradigm was discarded in favor of a more automated and scalable model. Workloads are dynamically tailored for optimal usage of resources, with the brokerage taking network traffic and forecasts into account. Computing resources are partitioned based on dynamic knowledge of their status and characteristics. The pilot has been re-factored around a plugin structure for easier development and deployment. Bookkeeping is handled with both coarse and fine granularities for efficient utilization of pledged or opportunistic resources. An in-house security mechanism authenticates the pilot and data management services in off-grid environments such as volunteer computing and private local clusters. The PanDA monitor has been extensively optimized for performance and extended with analytics to provide aggregated summaries of the system as well as drill-down to operational details. There are as well many other challenges planned or recently implemented, and adoption by non-LHC experiments such as bioinformatics groups successfully running Paleomix (microbial genome and metagenomes) payload on supercomputers. In this paper we will focus on the new and planned features that are most important to the next decade of distributed computing workload management.}
+	journal = {Journal of Physics: Conference Series}
 }
-	
-	
-@article{MERZKY20153,
-	title = "SAGA: A standardized access layer to heterogeneous Distributed Computing Infrastructure",
-	journal = "SoftwareX",
-	volume = "1-2",
-	pages = "3 - 8",
-	year = "2015",
-	issn = "2352-7110",
-	doi = "https://doi.org/10.1016/j.softx.2015.03.001",
-	url = "http://www.sciencedirect.com/science/article/pii/S2352711015000023",
-	author = "Andre Merzky and Ole Weidner and Shantenu Jha",
-	abstract = "Distributed Computing Infrastructure is characterized by interfaces that are heterogeneous—syntactically and semantically. SAGA represents the most comprehensive community effort to date to address the heterogeneity by defining a simple, uniform access layer. In this paper, we describe the basic concepts underpinning its design and development. We also discuss RADICAL-SAGA which is the most widely used implementation of SAGA."
-}
-
 
 @article{Merzky2018DesignAP,
-	title={Design and Performance Characterization of RADICAL-Pilot on Titan.},
+	title={Design and Performance Characterization of {RADICAL-Pilot} on {Titan}},
 	author={Andr{\'e} Merzky and Matteo Turilli and Manuel Maldonado and Shantenu Jha},
 	journal={CoRR},
 	year={2018},
 	volume={abs/1801.01843}
 }
 
-
 @electronic{LibCloud,
 	title = {LibCloud},
 	url = {https://libcloud.readthedocs.io/en/latest/compute/drivers/ec2.html}
+}
+
+@electronic{moab-backfill,
+	title = {Maui Scheduler: Backfill},
+	url = {http://docs.adaptivecomputing.com/maui/8.2backfill.php}
+}
+
+@electronic{cheyenne,
+	title = {Cheyenne},
+	url = {https://www2.cisl.ucar.edu/resources/computational-systems/cheyenne/cheyenne}
+}
+
+@electronic{bluewaters,
+	title = {About Blue Waters},
+	url = {http://www.ncsa.illinois.edu/enabling/bluewaters}
+}
+
+@electronic{olcf-resources,
+	title = {{OLCF} Resources: Compute Systems},
+	url = {https://www.olcf.ornl.gov/olcf-resources/compute-systems/}
+}
+
+@electronic{ssh,
+	title = {The {SSH} Protocol},
+	url = {https://www.ssh.com/ssh/#sec-The-SSH-protocol}
+}
+
+
+@electronic{rp-docs,
+	title = {{RADICAL-Pilot}},
+	url = {https://radicalpilot.readthedocs.io/en/latest/}
+}
+
+@electronic{radical-web,
+	title = {Research in Advanced DIstributed Cyberinfrastructure and Applications Laboratory (RADICAL)},
+	url = {http://radical.rutgers.edu/}
+}
+
+@electronic{radical-saga,
+	title = {{RADICAL-SAGA}},
+	url = {https://saga-python.readthedocs.io/en/latest/}
+}
+
+@electronic{nge-git,
+	title = {Next Generation Executor ({NGE})},
+	url = {https://github.com/radical-cybertools/radical.nge}
 }
 
 
@@ -167,4 +195,116 @@
 	issn = "0192-8651",
 	publisher = "John Wiley and Sons Inc.",
 	number = "10",
+}
+
+@inproceedings{maeno2014evolution,
+  title={Evolution of the ATLAS PanDA workload management system for exascale computational science},
+  author={Maeno, T and De, K and Klimentov, A and Nilsson, P and Oleynik, D and Panitkin, S and Petrosyan, A and Schovancova, J and Vaniachine, A and Wenaus, T and others},
+  booktitle={Journal of Physics: Conference Series},
+  volume={513},
+  number={3},
+  pages={032062},
+  year={2014},
+  organization={IOP Publishing}
+}
+
+@inproceedings{henderson1995job,
+  title={Job scheduling under the portable batch system},
+  author={Henderson, Robert L},
+  booktitle={Workshop on Job Scheduling Strategies for Parallel Processing},
+  pages={279--294},
+  year={1995},
+  organization={Springer}
+}
+
+@article{guide2011moab,
+  title={Moab Workload Manager},
+  author={Guide, Administrator},
+  year={2011}
+}
+
+@article{agostinelli2003geant4,
+  title={{GEANT4}--a simulation toolkit},
+  author={Agostinelli, Sea and Allison, John and Amako, K al and Apostolakis, John and Araujo, H and Arce, P and Asai, M and Axen, D and Banerjee, S and Barrand, G 2 and others},
+  journal={Nuclear instruments and methods in physics research section A: Accelerators, Spectrometers, Detectors and Associated Equipment},
+  volume={506},
+  number={3},
+  pages={250--303},
+  year={2003},
+  publisher={Elsevier}
+}
+
+@article{towns2014xsede,
+  title={{XSEDE}: accelerating scientific discovery},
+  author={Towns, John and Cockerill, Timothy and Dahan, Maytal and Foster, Ian and Gaither, Kelly and Grimshaw, Andrew and Hazlewood, Victor and Lathrop, Scott and Lifka, Dave and Peterson, Gregory D and others},
+  journal={Computing in Science \& Engineering},
+  volume={16},
+  number={5},
+  pages={62--74},
+  year={2014},
+  publisher={IEEE}
+}
+
+@book{gropp1999using,
+  title={Using {MPI}: portable parallel programming with the message-passing interface},
+  author={Gropp, William D and Gropp, William and Lusk, Ewing and Skjellum, Anthony and Lusk, Argonne Distinguished Fellow Emeritus Ewing},
+  volume={1},
+  year={1999},
+  publisher={MIT press}
+}
+
+@inproceedings{yoo2003slurm,
+  title={{SLURM}: Simple linux utility for resource management},
+  author={Yoo, Andy B and Jette, Morris A and Grondona, Mark},
+  booktitle={Workshop on Job Scheduling Strategies for Parallel Processing},
+  pages={44--60},
+  year={2003},
+  organization={Springer}
+}
+
+@inproceedings{zhou1992lsf,
+  title={{LSF}: Load sharing in large heterogeneous distributed systems},
+  author={Zhou, Songnian},
+  booktitle={I Workshop on Cluster Computing},
+  volume={136},
+  year={1992}
+}
+
+@article{battle2008bridging,
+  title={Bridging the semantic Web and Web 2.0 with representational state transfer (REST)},
+  author={Battle, Robert and Benson, Edward},
+  journal={Web Semantics: Science, Services and Agents on the {World Wide Web}},
+  volume={6},
+  number={1},
+  pages={61--69},
+  year={2008},
+  publisher={Elsevier}
+}
+
+@book{chodorow2013mongodb,
+  title={{MongoDB}: The Definitive Guide: Powerful and Scalable Data Storage},
+  author={Chodorow, Kristina},
+  year={2013},
+  publisher={O'Reilly Media, Inc.}
+}
+
+@article{goodale2006saga,
+  title={{SAGA}: A Simple {API} for Grid Applications. High-level application programming on the Grid},
+  author={Goodale, Tom and Jha, Shantenu and Kaiser, Hartmut and Kielmann, Thilo and Kleijer, Pascal and Von Laszewski, Gregor and Lee, Craig and Merzky, Andre and Rajic, Hrabri and Shalf, John},
+  journal={Computational Methods in Science and Technology},
+  volume={12},
+  number={1},
+  pages={7--20},
+  year={2006},
+  publisher={Citeseer}
+}
+
+@article{merzky2015saga,
+  title={{SAGA}: A standardized access layer to heterogeneous distributed computing infrastructure},
+  author={Merzky, Andre and Weidner, Ole and Jha, Shantenu},
+  journal={{SoftwareX}},
+  volume={1},
+  pages={3--8},
+  year={2015},
+  publisher={Elsevier}
 }
