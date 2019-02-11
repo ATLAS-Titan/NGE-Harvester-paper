@@ -209,10 +209,13 @@ available, RP directly schedules tasks on them, i.e., without using the
 machine’s batch system. In this way, tasks do not wait in the queue but
 execute immediately, enabling high-throughput on HPC machines. It is
 important to stress that RP, and pilot systems in general, do not ``game''
-the scheduling policies of the HPC machines: resource acquisition is
-performed via the batch system and resources remain available only for the
-given walltime. Jobs wait in the queue alongside all the other jobs and are
-subjected to queue, allocation and fair-use policies of the system.
+the scheduling and security policies of the HPC machines: resource
+acquisition is performed via the batch system and resources remain available
+only for the given walltime. Jobs wait in the queue alongside all the other
+jobs and are subjected to queue, allocation and fair-use policies of the
+system. Pilots are own by the same user that submitted the job to the batch
+system and RP does not enable pilot multitenancy: only the owner of the job
+and therefore of the pilot can schedule tasks on that pilot.
 	
 Among pilot systems, RP has unique capabilities and architectural properties.
 RP offers concurrent execution of heterogeneous tasks on the same pilot,
@@ -405,7 +408,7 @@ mapped between the two types of infrastructure.
 
 
 % ---------------------------------------------------------------------------
-\section{Conclusions}
+\section{Conclusion and Next Steps}
 
 In this paper we introduced two distinct systems---Harvester and
 RADICAL-Pilot---and an interface---Next Generation Executor (NGE)---that
