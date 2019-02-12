@@ -1,10 +1,9 @@
 \documentclass{webofc}
+
 \usepackage[varg]{txfonts}
 \usepackage{natbib}
-
 \usepackage{xcolor}
-
-\usepackage[justification=centering]{caption}
+\usepackage{subfig}
 
 \def\correspondingauthor{\footnote{Corresponding author: \url{matteo.turilli@rutgers.edu}}}
 
@@ -46,17 +45,17 @@ allowing their integration while being in production.}
 \section{Introduction}
 \label{intro} 
 
-Production ANd Distributed Analysis (PanDA)~\cite{PanDA} is the Workload
-Management System (WMS)~\cite{maeno2014evolution} used by the ATLAS
+Production ANd Distributed Analysis (PanDA)~\citep{PanDA} is the Workload
+Management System (WMS)~\citep{maeno2014evolution} used by the ATLAS
 experiment at the Large Hadron Collider (LHC) to execute scientific
 applications on widely distributed resources. PanDA is designed to support
 the execution of distributed workloads via
-pilots~\cite{turilli2018comprehensive}. Pilot-capable WMS enable high
+pilots~\citep{turilli2018comprehensive}. Pilot-capable WMS enable high
 throughput computing (HTC) by executing tasks via multi-level scheduling
 while supporting interoperability across multiple sites. Special jobs (i.e.,
 pilots) are submitted to each site and, once active, tasks are directly
 scheduled to each job for execution without passing through the site's batch
-and scheduler systems~\cite{henderson1995job}. This reduces queue time,
+and scheduler systems~\citep{henderson1995job}. This reduces queue time,
 increasing task throughput. Pilots are particularly relevant for LHC
 experiments, where millions of tasks are executed across multiple sites every
 month, analyzing and producing petabytes of data.
@@ -72,31 +71,31 @@ process around 11 million jobs on Titan, a leadership-class machine managed
 by the Oak Ridge Leadership Computing Facility (OLCF) at the Oak Ridge
 National Laboratory (ORNL).
 
-Ref.~\cite{Doleynik2017high} describes in detail how PanDA has been deployed
+Ref.~\citep{Doleynik2017high} describes in detail how PanDA has been deployed
 on Titan. Importantly, it shows that while PanDA implements the pilot
 abstraction to execute tasks on grid resources, on high-performance computing
 (HPC) facilities PanDA submits jobs directly to the batch system of the
 machine. The size and duration of these jobs depend on resource availability
 and workload requirements. PanDA polls resource availability from Titan every
-ten minutes via the backfill functionality~\cite{moab-backfill} of the Moab
-scheduler~\cite{guide2011moab} and, in case of available resources, submits a
+ten minutes via the backfill functionality~\citep{moab-backfill} of the Moab
+scheduler~\citep{guide2011moab} and, in case of available resources, submits a
 job requiring that amount of resources. The workload of this job is sized so
 to allow its execution within the available walltime. PanDA uses Titan’s
 resources to execute Geant4 event simulations, a specific type of workload
 that is amenable to execute via the machine’s batch
-system~\cite{agostinelli2003geant4}.
+system~\citep{agostinelli2003geant4}.
 
 In this paper, we present the integration between Harvester
 (Section~\ref{section:harvester}) and Next Generation Executor
-(NGE)~\cite{nge-git} (Section~\ref{sec:rp}). Harvester is a new
+(NGE)~\citep{nge-git} (Section~\ref{sec:rp}). Harvester is a new
 resource-facing service developed by ATLAS to enable execution of ATLAS
 workloads on HPC machines, bringing further coherence in the PanDA stack
 across the support of different types of infrastructures, like grid and HPC.
-NGE is a Representational State Transfer REST~\cite{battle2008bridging}
+NGE is a Representational State Transfer REST~\citep{battle2008bridging}
 interface developed for
-RADICAL-Pilot~\cite{rp-docs,Merzky2018DesignAP,merzky2018using}, a pilot
+RADICAL-Pilot~\citep{rp-docs,Merzky2018DesignAP,merzky2018using}, a pilot
 system developed by the Research in Advanced DIstributed Cyberinfrastructure
-and Applications Laboratory (RADICAL)~\cite{radical-web} and designed to
+and Applications Laboratory (RADICAL)~\citep{radical-web} and designed to
 support high-throughput computing on HPC infrastructures, including
 leadership-class machines like Titan. Different from Harvester, NGE enables
 to submit a pilot job via the batch system of Titan and then directly
@@ -136,7 +135,7 @@ a system for the execution of general purpose workloads on HPC machines.
 \section{Harvester}
 \label{section:harvester}
 
-Harvester~\cite{Megino_2017} is a resource-facing service developed for the
+Harvester~\citep{Megino_2017} is a resource-facing service developed for the
 ATLAS experiment at the European Organization for Nuclear Research (CERN)
 since 2016 with a wide collaboration of experts. Harvester is stateless with
 a modular design to work with different resource types and workloads. The
@@ -148,7 +147,7 @@ allocation among various resource types, removing batch-level static
 partitioning; and (iv) tightly integrating PanDA and resources to support the
 execution of new types of workload.
 
-Figure~\ref{fig:harvester-architecture} shows a schematic view of Harvester's
+Figure~\ref{fig:harvester}a shows a schematic view of Harvester's
 architecture. Harvester is a stateless service with a local master database
 and a central slave database. The local database is used for real-time
 bookkeeping close to resources, while the central database is periodically
@@ -160,30 +159,28 @@ bidirectional: Harvester fetches job descriptions that have to be executed
 from PanDA Server using a communicator component, and the same component is
 used to report back the status of these jobs.
 
-
 \begin{figure}
-  \centering
-  \includegraphics[width=0.30\textwidth]{figures/panda-harvester-overview-color.png}
-  \caption{Harvester architecture.}
-  \label{fig:harvester-architecture}
+    \centering
+    \subfloat[ ]{
+      {\includegraphics[width=0.30\textwidth]{figures/panda-harvester-overview-color.png} }
+    }
+    \qquad
+    \subfloat[ ]{
+      {\includegraphics[width=0.465\textwidth]{figures/panda-harvester-modules.pdf} }
+    }
+    \caption{(a) Harvester architecture; (b) Modules used for PanDA-NGE interaction.}
+    \label{fig:harvester}%
 \end{figure}
 
-Figure~\ref{fig:harvester-modules} shows how harvester accesses resources
+Figure~\ref{fig:harvester}b shows how harvester accesses resources
 through different plugins. Multiple Harvester instances run on one or more
 edge nodes of an HPC center, and access the compute nodes of HPC resources
 through local HPC batch systems using specific submission plugins. The status
 of each batch submission is tracked using monitor plugin. Input and output
 data are transferred with various stager and preparator plugins, which
-implement connectors for Rucio~\cite{garonne2014rucio}, Globus
-Online~\cite{foster2011globus} and other data transfer clients. Communication
+implement connectors for Rucio~\citep{garonne2014rucio}, Globus
+Online~\citep{foster2011globus} and other data transfer clients. Communication
 among the components is implemented via the local Harvester database.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.49\textwidth]{figures/panda-harvester-modules.pdf}
-  \caption{Modules used for PanDA-NGE interaction.}
-  \label{fig:harvester-modules}
-\end{figure}
 
 In the context of the BigPanDA project, several instances of Harvester have
 been deployed on front nodes of BNL Institutional Cluster, NERSC (Cori),
@@ -196,15 +193,15 @@ like ATLAS, LQCD, nEDM, IceCube and LSST.
 
 RADICAL-Pilot (RP) is a pilot system which enables task-level concurrency on
 a variety of infrastructures, including HPC and grid systems of the Extreme
-Science and Engineering Discovery Environment (XSEDE)~\cite{towns2014xsede},
+Science and Engineering Discovery Environment (XSEDE)~\citep{towns2014xsede},
 and the HPC machines Cheyenne at NCAR-Wyoming Supercomputing Center
-(NWSC)~\cite{cheyenne}, Blue Waters at the National Center For supercomputing
-Applications (NCSA)~\cite{bluewaters}, and Rhea, Titan and Summit at the Oak
-Ridge National Laboratory (ORNL)~\cite{olcf-resources}.
+(NWSC)~\citep{cheyenne}, Blue Waters at the National Center For supercomputing
+Applications (NCSA)~\citep{bluewaters}, and Rhea, Titan and Summit at the Oak
+Ridge National Laboratory (ORNL)~\citep{olcf-resources}.
 
 As a pilot system, RP allows scheduling jobs on HPC machines (or virtual
 machines on cloud infrastructures) to acquire computing
-resources~\cite{turilli2018comprehensive}. Once these resources become
+resources~\citep{turilli2018comprehensive}. Once these resources become
 available, RP directly schedules tasks on them, i.e., without using the
 machine’s batch system. In this way, tasks do not wait in the queue but
 execute immediately, enabling high-throughput on HPC machines. It is
@@ -223,10 +220,10 @@ supporting both CPU and GPU. This means that tasks with diverse requirements,
 some using different number of cores and/or work nodes, others using one or
 more GPUs, can be executed at the same time on the same pilot, without having
 to be queued on the batch system or the HPC resource. Further, RP supports
-more than twelve task launching methods---e.g., ssh~\cite{ssh}, mpirun,
-aprun, openmpi~\cite{gropp1999using}---and all the major HPC batch
-systems---e.g., SLURM~\cite{yoo2003slurm}, PBS~\cite{henderson1995job}, or
-LSF~\cite{zhou1992lsf}. In this way, RP can enable pilot capabilities on
+more than twelve task launching methods---e.g., ssh~\citep{ssh}, mpirun,
+aprun, openmpi~\citep{gropp1999using}---and all the major HPC batch
+systems---e.g., SLURM~\citep{yoo2003slurm}, PBS~\citep{henderson1995job}, or
+LSF~\citep{zhou1992lsf}. In this way, RP can enable pilot capabilities on
 machines with different architectures and software environments.
 
 RP isolates the execution of each tasks into a dedicated process, enabling
@@ -241,7 +238,7 @@ scheduling algorithms across resources and within each resource.
 	
 Architecturally, RP is designed following a so called ‘building blocks’
 approach to be self-sufficient, interoperable, extensible and partially
-composable~\cite{turilli2018building}. Self-sufficient because RP
+composable~\citep{turilli2018building}. Self-sufficient because RP
 independently implements the necessary and sufficient set of functionalities
 for describing and managing pilot and task entities; interoperable in terms
 of type of workload, resource, and execution paradigm; and extensible as new
@@ -250,9 +247,9 @@ more functionalities can be implemented for this entities. Currently,
 composability is partially designed and implemented: while the pilot-API can
 be used by both users and other systems to describe and execute task-based
 workloads, RADICAL-Pilot requires
-RADICAL-SAGA~\cite{goodale2006saga,merzky2015saga,radical-saga} to interface
+RADICAL-SAGA~\citep{goodale2006saga,merzky2015saga,radical-saga} to interface
 to HPC resources. A prototype interface to cloud resources based on
-LibCloud~\cite{LibCloud} is available and a general-purpose resource
+LibCloud~\citep{LibCloud} is available and a general-purpose resource
 connector component is under development.
 	
 Figure~\ref{fig:rp-arch} shows RP architecture and execution model. RP
@@ -261,7 +258,7 @@ This API let users to describe tasks---called compute units (CU)---and pilots
 (Figure~\ref{fig:rp-arch}.1). Each compute unit description has a set of
 properties, including the name of the executable launched by RP, the type and
 amount of cores this executable will need, whether it requires Message
-Passing Interface (MPI)~\cite{gropp1999using}, input files and so on. Pilot
+Passing Interface (MPI)~\citep{gropp1999using}, input files and so on. Pilot
 descriptions also have a set of properties, including the endpoint where the
 resource request should be submitted, the type and amount of resources to
 acquire, and the walltime of these resources. The RP API includes classes to
@@ -331,10 +328,10 @@ the two systems.
 % ---------------------------------------------------------------------------
 \section{Integrating Harvester and NGE}\label{sec:integration}
 
-We deployed Harvester, NGE, RP, and the MongoDB~\cite{chodorow2013mongodb}
+We deployed Harvester, NGE, RP, and the MongoDB~\citep{chodorow2013mongodb}
 instance needed by RP on three separate containers provided by OLCF via their
-OpenShift service~\cite{openshift}. The container used for NGE and RP can
-directly submit jobs to the PBS batch system~\cite{henderson1995job} of
+OpenShift service~\citep{openshift}. The container used for NGE and RP can
+directly submit jobs to the PBS batch system~\citep{henderson1995job} of
 Titan, while the MongoDB instance can be reached by both Titan and the NGE
 and RP container. This enables submission of pilot jobs to Titan and
 scheduling of tasks on the resources of that pilot once scheduled and
@@ -347,7 +344,7 @@ containers, enabling communication via a secure tunnel. A special module for
 job submissions to NGE and job monitoring has been developed for Harvester.
 The functionality of these modules have been tested with dummy jobs as well
 as with samples of ATLAS and Molecular
-Dynamics~\cite{3b6dad414e794d36954333f8f177f47c} workloads.
+Dynamics~\citep{3b6dad414e794d36954333f8f177f47c} workloads.
 
 Figure~\ref{fig:integration} shows details of the coordination protocol
 between Harvester and NGE and of the execution model of the integrated
@@ -394,7 +391,7 @@ single modes: standard and backfill. Standard mode supports submission of
 jobs to one or more of the five batch queues available on Titan. In this
 mode, job submissions are exactly the same as any other job submitted to
 Titan for execution by any other user. In backfill mode, RP uses the
-\texttt{showbf}~\cite{showbf} command of the Moab scheduler to poll the
+\texttt{showbf}~\citep{showbf} command of the Moab scheduler to poll the
 current node and walltime availability, creates a pilot description
 requesting that availability and submits an equivalent job to the suitable
 queue. In this way, RP increases the chances for that job to be immediately
@@ -433,7 +430,7 @@ native API. We have now to compare the execution of a standard ATLAS Geant4
 workload with Harvester to the same execution performed with Harverser and
 NGE. This comparison will measure integration overheads but also workload
 execution performance. We expect that the execution on pilot will introduce
-optimizations, especially related to AthenaMP~\cite{Crooks_2012} setup and
+optimizations, especially related to AthenaMP~\citep{Crooks_2012} setup and
 the total number of events processed per walltime unit. After this
 characterization, we will be ready to concurrently execute heterogeneous
 workloads, using the same pilot to run tasks of distinct users from diverse
